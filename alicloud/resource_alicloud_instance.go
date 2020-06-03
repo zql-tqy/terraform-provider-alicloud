@@ -655,7 +655,7 @@ func resourceAliyunInstanceUpdate(d *schema.ResourceData, meta interface{}) erro
 	}
 	target := d.Get("status").(string)
 	statusUpdate := d.HasChange("status")
-	if imageUpdate || vpcUpdate || passwordUpdate || typeUpdate || statusUpdate {
+	if imageUpdate || vpcUpdate || passwordUpdate || typeUpdate || (!d.IsNewResource() && statusUpdate) {
 		run = true
 		instance, errDesc := ecsService.DescribeInstance(d.Id())
 		if errDesc != nil {
