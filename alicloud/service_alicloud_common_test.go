@@ -851,9 +851,9 @@ data "alicloud_vswitches" "default" {
 
 resource "alicloud_vswitch" "this" {
  count = "${length(data.alicloud_vswitches.default.ids) > 0 ? 0 : 1}"
- name = "tf_testAccAdb_vpc"
+ vswitch_name = "tf_testAccAdb_vpc"
  vpc_id = "${data.alicloud_vpcs.default.ids.0}"
- availability_zone = "${data.alicloud_zones.default.zones.0.id}"
+ zone_id = "${data.alicloud_zones.default.zones.0.id}"
  cidr_block = "172.16.0.0/24"
 }
 `
